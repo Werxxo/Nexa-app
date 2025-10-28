@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="es" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Dashboard Conductor</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"/>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link th:href="@{/css/modal.css}" rel="stylesheet">
+    <link th:href="@{/css/Dashboard_C.css}" rel="stylesheet">
+    <link rel="icon" href="NEXA_ICO.ico">
+</head>
+<body>
+<div class="sidebar">
+    <div class="sidebar-header">
+        <img src="https://cdn-icons-png.flaticon.com/512/3135/3135715.png" class="profile-pic" id="profilePicDisplay">
+        <div class="logo-text" id="usernameDisplay">Conductor</div>
+        <button class="toggle-btn"><i class="fas fa-angle-double-left"></i></button>
+    </div>
+    <ul>
+        <li data-section="perfil"><i class="fas fa-user"></i><span class="text">Perfil</span></li>
+        <li data-section="historial"><i class="fas fa-history"></i><span class="text">Historial</span></li>
+        <li data-section="solicitudes"><i class="fas fa-car"></i><span class="text">Solicitudes</span></li>
+        <li data-section="billetera"><i class="fas fa-dollar"></i><span class="text">Billetera</span></li>
+        <li class="logout-item" onclick="document.getElementById('logoutForm').submit()">
+            <form id="logoutForm" th:action="@{/auth/logout}" method="post">
+                <input type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}"/>
+                <i class="fas fa-sign-out-alt"></i>
+                <span class="logout-text">Cerrar sesión</span>
+            </form>
+        </li>
+    </ul>
+</div>
+
+<div class="main">
+    <div class="section active" id="perfil">
+        <h2 id="userFullName" th:text="${conductor.nombre_y_Apellido}">Nombre del conductor</h2>
+
+        <br><br>
+        <div class="setting-box">
+            <span><i class="fas fa-bell"></i> Notificaciones para recibir nuevas solicitudes</span>
+            <input type="checkbox">
+        </div>
+        <div class="setting-box">
+            <span><i class="fas fa-key"></i> Cambiar contraseña</span>
+            <button>CAMBIAR</button>
+        </div>
+        <div class="setting-box">
+            <span><i class="fas fa-moon"></i> <span id="darkModeText">Modo oscuro</span></span>
+            <button onclick="toggleDarkMode()">CAMBIAR</button> <!-- Agregar onclick aquí -->
+        </div>
+    </div>
+
+    <div class="section" id="historial">
+        <h2>Historial de Viajes Realizados</h2>
+        <div class="filters">
+            <input type="date" id="filtroFecha" placeholder="Filtrar por fecha">
+            <input type="text" id="filtroPasajero" placeholder="Filtrar por pasajero">
+            <button onclick="filtrarHistorial()">Filtrar</button>
+            <button onclick="resetFiltrosHistorial()">Limpiar</button>
+        </div>
+        <div class="historial-table-container">
+            <table id="historialTable">
+                <thead>
+                <tr>
+                    <th>Fecha</th>
+                    <th>Hora</th>
+                    <th>Origen</th>
+                    <th>Destino</th>
+                    <th>Pasajero</th>
+                    <th>Precio</th>
+                    <th>Acción</th>
+                </tr>
+                </thead>
+                <tbody id="historialBody"></tbody>
+            </table>
+            <div class="pagination">
+                <button onclick="cambiarPagina(-1)" disabled id="prevPage"><i class="fas fa-chevron-left"></i></button>
+                <span id="pageInfo">Página 1</span>
+                <button onclick="cambiarPagina(1)" id="nextPage"><i class="fas fa-chevron-right"></i></button>
+            </div>
+        </div>
+    </div>
+
+    <div class="section" id="solicitudes">
+        <h2>Solicitudes de Viaje</h2>
+        <div class="map-container">
+            <div id="map"></div>
+            <div class="map-controls">
+                <button class="map-btn" title="Centrar mapa">
+                    <i class="fas fa-crosshairs"></i>
+                </button>
+                <button class="map-btn" title="Mostrar tráfico">
+                    <i class="fas fa-traffic-light"></i>
+                </button>
+            </div>
+        </div>
+        <div class="solicitudes-table-container">
+            <h3>Detalles de la Solicitud</h3>
+            <div id="solicitudesTable" class="empty-state">
+                <i class="fas fa-info-circle"></i>
+                <p>Selecciona una solicitud en el mapa para ver los detalles</p>
+            </div>
+        </div>
+    </div>
+
+    <div class="section" id="billetera">
+        <h2>Billetera</h2>
+        <div class="wallet-card">
+            <div class="wallet-icon"><i class="fas fa-wallet"></i></div>
+            <div class="wallet-info">
+                <span class="wallet-label">MotVirs</span>
+                <span class="wallet-amount">$110.000 COP</span>
+            </div>
+        </div>
+        <div class="ingresos-container">
+            <h3>Ingresos</h3>
+            <div class="filters">
+                <select id="filtroPeriodo" onchange="filtrarIngresos()">
+                    <option value="año">Año</option>
+                    <option value="mes">Mes</option>
+                    <option value="semana">Semana</option>
+                    <option value="día">Día</option>
+                </select>
+                <input type="date" id="filtroFechaIngresos" placeholder="Filtrar por fecha" onchange="filtrarIngresos()">
+                <button onclick="resetFiltrosIngresos()">Limpiar</button>
+            </div>
+            <table id="ingresosTable">
+                <thead>
+                <tr>
+                    <th>Fecha</th>
+                    <th>Monto</th>
+                    <th>Descripción</th>
+                </tr>
+                </thead>
+                <tbody id="ingresosBody"></tbody>
+            </table>
+        </div>
+    </div>
+</div>
+
+<!-- Modal para detalles del viaje -->
+<div class="modal" id="modalDetallesViaje">
+    <div class="modal-content">
+        <span class="modal-close" onclick="cerrarModalDetalles()">×</span>
+        <h3>Detalles del Viaje</h3>
+        <div id="detallesViajeContent"></div>
+    </div>
+</div>
+
+<!-- Primero carga tus scripts -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/sockjs-client/1.6.1/sockjs.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/stomp.js/2.3.3/stomp.min.js"></script>
+<script src="/js/Dashboard_C.js"></script>
+
+<!-- Luego carga Google Maps sin callback -->
+<script async src="https://maps.googleapis.com/maps/api/js?key=AIzaSyD-lMXvr0vMKjw97iEX9QibzK0TCx2TAMY&libraries=places&v=weekly&loading=async"></script>
+</body>
+</html>

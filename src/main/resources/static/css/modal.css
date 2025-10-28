@@ -1,0 +1,216 @@
+/* Estilos base para el modal */
+.modal {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.5);
+    z-index: 2000;
+    align-items: center;
+    justify-content: center;
+}
+.modal.active {
+    display: flex;
+    opacity: 1;
+}
+
+.modal-content {
+    background: linear-gradient(135deg, #f5f7fa, #c3cfe2);
+    border-radius: 15px;
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+    padding: 30px;
+    width: 90%;
+    max-width: 450px;
+    text-align: center;
+    position: relative;
+    transform: scale(0.9);
+    transition: transform 0.3s ease;
+}
+
+.modal.active .modal-content {
+    transform: scale(1);
+}
+
+.modal-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 15px;
+}
+
+.modal-header h3 {
+    margin: 0;
+    font-size: 1.2em;
+    font-weight: 600;
+}
+
+.close-btn {
+    background: none;
+    border: none;
+    font-size: 1.5em;
+    cursor: pointer;
+    color: #aaa;
+    padding: 0;
+    line-height: 1;
+}
+
+.close-btn:hover {
+    color: #000;
+}
+
+/* Contenido específico de los modals */
+.moto-search, .driver-info, .passenger-info, .progress-container {
+    margin-bottom: 20px;
+}
+
+.spinner {
+    border: 4px solid #f3f3f3;
+    border-top: 4px solid #3498db;
+    border-radius: 50%;
+    width: 50px;
+    height: 50px;
+    animation: spin 1.5s linear infinite;
+    margin: 0 auto 15px;
+}
+
+@keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+
+.driver-photo, .passenger-photo {
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
+    margin: 15px auto;
+    display: block;
+    object-fit: cover;
+    border: 3px solid #ddd;
+}
+
+.vehicle-info, .service-details {
+    margin: 10px 0;
+    font-size: 1.2em;
+}
+
+.vehicle-info i, .service-details i {
+    margin-right: 10px;
+    color: #555;
+}
+
+.progress-container .route-progress {
+    margin: 15px 0;
+}
+
+.progress-bar {
+    background-color: #e0e0e0;
+    border-radius: 10px;
+    height: 15px;
+    overflow: hidden;
+}
+
+.progress {
+    background-color: #2ecc71;
+    height: 100%;
+    transition: width 0.5s ease;
+}
+
+.locations {
+    display: flex;
+    justify-content: space-between;
+    font-size: 0.9em;
+    margin-top: 5px;
+}
+
+.locations .origin, .locations .destination {
+    color: #666;
+}
+
+/* Botones de acción */
+.action-buttons {
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+    margin-top: 20px;
+}
+
+.btn {
+    padding: 12px 25px;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    font-size: 1em;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+.btn i {
+    margin-right: 5px;
+}
+
+.cancel-btn {
+    background-color: #e74c3c;
+    color: #fff;
+}
+
+.cancel-btn:hover {
+    background-color: #c0392b;
+    transform: scale(1.05);
+}
+
+.start-btn {
+    background-color: #2ecc71;
+    color: #fff;
+}
+
+.start-btn:hover {
+    background-color: #27ae60;
+    transform: scale(1.05);
+}
+
+.finish-btn {
+    background-color: #3498db;
+    color: #fff;
+}
+
+.finish-btn:hover {
+    background-color: #2980b9;
+    transform: scale(1.05);
+}
+
+/* Modo oscuro */
+body.dark-mode .modal-content {
+    background: linear-gradient(135deg, #2a2a2a, #444);
+    color: #fff;
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.3);
+}
+
+body.dark-mode .close-btn {
+    color: #ccc;
+}
+
+body.dark-mode .close-btn:hover {
+    color: #fff;
+}
+
+body.dark-mode .spinner {
+    border-color: #555;
+    border-top-color: #fff;
+}
+
+body.dark-mode .driver-photo, body.dark-mode .passenger-photo {
+    border-color: #555;
+}
+
+body.dark-mode .vehicle-info i, body.dark-mode .service-details i {
+    color: #ccc;
+}
+
+body.dark-mode .progress-bar {
+    background-color: #555;
+}
+
+body.dark-mode .locations .origin, body.dark-mode .locations .destination {
+    color: #bbb;
+}

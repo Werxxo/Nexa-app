@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Calificar Servicio</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"/>
+    <link href="/css/rating.css" rel="stylesheet">
+    <link rel="icon" href="../static/NEXA_ICO.ico">
+</head>
+<body>
+<div class="rating-container" th:attr="data-servicio-id=${servicioId}, data-rol=${rol}">
+    <h1>Califica tu experiencia</h1>
+    <p th:text="'¿Cómo calificarías a ' + ${nombreOtro} + '?'"></p>
+
+    <div class="stars" id="stars">
+        <i class="far fa-star" data-rating="1"></i>
+        <i class="far fa-star" data-rating="2"></i>
+        <i class="far fa-star" data-rating="3"></i>
+        <i class="far fa-star" data-rating="4"></i>
+        <i class="far fa-star" data-rating="5"></i>
+    </div>
+
+    <textarea id="comentarios" placeholder="Deja un comentario opcional..."></textarea>
+
+    <input type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}"/>
+
+    <button id="submitRating">Enviar Calificación</button>
+</div>
+<script th:inline="javascript">
+    var rolUsuario = /*[[${rol}]]*/ 'pasajero';
+</script>
+<script src="/js/rating.js"></script>
+</body>
+</html>

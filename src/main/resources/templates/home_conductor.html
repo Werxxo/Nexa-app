@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="es" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>NEXA - Transporte rápido y seguro</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.3.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link  href="/css/Homec.css" rel="stylesheet">
+    <link rel="icon" th:href="@{NEXA_ICO.ico}">
+
+
+</head>
+<body>
+<!-- Navbar -->
+<header>
+    <nav class="navbar">
+        <h2 class="logo"><a href="#">NE<span>XA</span></a></h2>
+        <input type="checkbox" id="menu-toggler">
+        <label for="menu-toggler" id="hamburger-btn">
+            <i class="fas fa-bars"></i>
+        </label>
+        <ul class="all-links">
+            <li><a href="#home" class="active">Inicio</a></li>
+            <!--        <li><a href="#services">Servicios</a></li>-->
+            <li><a href="#portfolio">Beneficios</a></li>
+            <li><a href="#contact">Contacto</a></li>
+            <li><a href="#team">Nosotros</a></li>
+            <li><a href="/public/home/pasajero">Pasajero</a></li>
+            <li><a href="/auth/registro" class="btn_Reg">Regístrate</a></li>
+            <a th:href="@{/auth/login}" class="btn_Reg" style="float:right">Iniciar </a>
+        </ul>
+    </nav>
+</header>
+
+<!-- Home Section -->
+<section class="homepage" id="home">
+    <div class="content">
+        <div class="text">
+            <h1 class="logo">NE<span>XA:</span> Conecta con el movimiento</h1>
+            <p>Evita el tráfico y ahorra tiempo con nuestro servicio de moto.</p>
+        </div>
+        <a href="/auth/registro" class="btn">¡Regístrate ahora!</a>
+    </div>
+</section>
+
+<!-- Beneficios Section -->
+<section class="portfolio" id="portfolio">
+    <h2>Beneficios <span>Exclusivos</span></h2>
+    <p>Descubre las ventajas de ser parte de nuestra comunidad</p>
+    <ul class="cards">
+        <li class="card">
+            <img src="/img/bono.jpg" alt="Bono">
+            <h3>Bono</h3>
+            <p>Por cada 10 carreras obtendrás una bonificación especial</p>
+        </li>
+        <li class="card">
+            <img src="/img/motofiel.jpg" alt="Conductor fiel">
+            <h3>Conductor fiel</h3>
+            <p>Disfruta de premios como cambio de aceite, descuentos en papeles, entre otros beneficios exclusivos</p>
+        </li>
+        <li class="card">
+            <img src="/img/tecnomecanica.jpg" alt="Tecnomecánica">
+            <h3>Revisión tecnomecánica</h3>
+            <p>Siendo un conductor ejemplar, recibes revisión tecnomecánica gratuita cada 6 meses</p>
+        </li>
+    </ul>
+</section>
+
+<!-- Nosotros Section -->
+<section class="about" id="about">
+    <h2>Sobre <span>Nosotros</span></h2>
+    <p>Conoce más sobre nuestra historia y valores</p>
+    <div class="row">
+        <div class="company-info">
+            <h3>Nuestra historia</h3>
+            <p>
+                La historia de MotVirs comienza con una idea simple pero poderosa: brindar un servicio de transporte rápido, seguro y accesible para todos. Fundada en 2023 en Cartagena, hemos crecido gracias a la confianza de nuestros usuarios y la dedicación de nuestro equipo.
+            </p>
+        </div>
+        <div class="mission-vision">
+            <h3>Misión</h3>
+            <p>
+                Nuestra misión es ofrecer un servicio de moto taxi rápido, seguro y accesible, mejorando la movilidad urbana y creando oportunidades económicas para nuestros conductores asociados.
+            </p>
+            <h3>Visión</h3>
+            <p>
+                Aspiramos a convertirnos en el servicio de moto taxi más confiable y reconocido de Cartagena, expandiéndonos a otras ciudades y manteniendo siempre nuestro compromiso con la calidad y la seguridad.
+            </p>
+        </div>
+    </div>
+</section>
+
+<!-- Nuestro Equipo -->
+<section class="team" id="team">
+    <h2>Nuestro <span>Equipo</span></h2>
+    <p>Conoce a quienes hacen posible NEXA</p>
+    <ul class="cards">
+        <li class="card">
+            <img src="#" alt="Mateo Vanegas">
+            <h3>Mateo Vanegas</h3>
+            <p>Fundador y CEO</p>
+        </li>
+        <li class="card">
+            <img src="#" alt="Weider Navarro">
+            <h3>Weider Navarro</h3>
+            <p>Gerente de Infraestructura de Datos</p>
+        </li>
+        <li class="card">
+            <img src="#" alt="Frank Salcedo">
+            <h3>Frank Salcedo</h3>
+            <p>Coordinador de Diseño Visual</p>
+        </li>
+        <li class="card">
+            <img src="#" alt="Ferney">
+            <h3>Ferney</h3>
+            <p>Director en Servicio al Cliente</p>
+        </li>
+    </ul>
+</section>
+
+<!-- Contacto -->
+<section class="contact" id="contact">
+    <h2>Contáctanos <span>Aquí</span></h2>
+    <p>Estamos para responder cualquier inquietud que tengas</p>
+    <div class="row">
+        <div class="col information">
+            <div class="contact-details">
+                <p><i class="fas fa-envelope"></i> nexa@hotmail.com</p>
+                <p><i class="fas fa-phone"></i> (+57) 986-4763477</p>
+                <p><i class="fas fa-clock"></i> Lunes - Viernes: 8:00 AM - 6:00 PM</p>
+                <p><i class="fas fa-clock"></i> Sábado - Domingo: 10:00 AM - 3:00 PM</p>
+                <p><i class="fas fa-globe"></i> www.NEXA.com</p>
+            </div>
+        </div>
+        <div class="col form">
+            <form>
+                <input type="text" placeholder="Nombre*" required>
+                <input type="email" placeholder="Email*" required>
+                <textarea placeholder="Mensaje*" required></textarea>
+                <button id="submit" type="submit" class="btn">Enviar Mensaje</button>
+            </form>
+        </div>
+    </div>
+</section>
+
+<!-- Footer -->
+<footer>
+    <div>
+        <span>NEXA© 2025 - Todos los derechos reservados</span>
+        <span class="links">
+        <a href="#home">Inicio</a>
+        <a href="#contact">Contacto</a>
+      </span>
+    </div>
+</footer>
+<script src="/js/Homec.js"></script>
+</body>
+</html>
